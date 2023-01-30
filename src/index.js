@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
 import shell from 'shelljs';
+import { Command } from 'commander';
 
 async function askTypeOfCommit() {
   const answer = await inquirer.prompt({
@@ -46,8 +47,22 @@ async function askCommitMessage() {
   return answer.commit_message;
 }
 
-const commit_type = await askTypeOfCommit();
-const commit_message = await askCommitMessage();
+const program = new Command();
 
-shell.exec('git add .');
-shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
+program
+  .name('cm-util')
+  .description('conventional commit cli helper')
+  .version('1.0.0');
+
+program
+  .command('c')
+  .description('commit using conventional naming')
+  .action(async () => {
+    const commit_type = await askTypeOfCommit();
+    const commit_message = await askCommitMessage();
+
+    shell.exec('git add .');
+    shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
+  });
+
+program.parse();

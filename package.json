@@ -4,6 +4,9 @@
   "description": "",
   "type": "module",
   "main": "index.js",
+  "bin": {
+    "cm": "./src/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.2.0",
+    "commander": "^10.0.0",
     "gradient-string": "^2.0.2",
     "inquirer": "^9.1.4",
     "shelljs": "^0.8.5"
