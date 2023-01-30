@@ -3,6 +3,8 @@ import inquirer from 'inquirer';
 import shell from 'shelljs';
 import ora from 'ora';
 import chalk from 'chalk';
+import figlet from 'figlet';
+import gradient from 'gradient-string';
 import { Command } from 'commander';
 
 async function askTypeOfCommit() {
@@ -58,19 +60,46 @@ async function pushToGit(branch_name) {
 const program = new Command();
 
 program
-  .name('cm-util')
+  .name('epic-cc')
   .description('conventional commit cli helper')
-  .version('1.0.0');
+  .version('1.0.0')
+  .action(() => {
+    const title = `epic-cc`;
+    const subtitle = `your conventional commit cli helper!`;
+
+    figlet(title, (err, data) => {
+      console.log(gradient.pastel.multiline(data));
+      console.log(gradient.pastel(`${subtitle}`));
+    });
+  });
 
 program
-  .command('c')
-  .description('commit using conventional naming')
+  .command('ac')
+  .description('add all changes and commit using conventional naming')
   .action(async () => {
     const commit_type = await askTypeOfCommit();
     const commit_message = await askCommitMessage();
 
     shell.exec('git add .');
     shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
+
+    console.log(
+      `${chalk.bgBlue.bold('conventional commit created succesfully')}`
+    );
+  });
+
+program
+  .command('c')
+  .description('commit changes using conventional naming')
+  .action(async () => {
+    const commit_type = await askTypeOfCommit();
+    const commit_message = await askCommitMessage();
+
+    shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
+
+    console.log(
+      `${chalk.bgBlue.bold('conventional commit created succesfully')}`
+    );
   });
 
 program
@@ -79,10 +108,12 @@ program
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
     const spinner = ora(
-      `Loading ${chalk.red('pushing changes to repository...')}`
+      `${chalk.bgRed.bold('pushing changes to repository...')}`
     ).start();
     await pushToGit(branch_name);
-    spinner.succeed(`changes pushed to repository ${branch_name} 🚀`);
+    spinner.succeed(
+      `${chalk.bgGreen.bold(`changes pushed to repository ${branch_name} 🚀`)}`
+    );
   });
 
 program.parse();
