@@ -13,6 +13,7 @@
   "dependencies": {
     "chalk": "^5.2.0",
     "gradient-string": "^2.0.2",
-    "inquirer": "^9.1.4"
+    "inquirer": "^9.1.4",
+    "shelljs": "^0.8.5"
   }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
+import shell from 'shelljs';
 
 async function askTypeOfCommit() {
   const answer = await inquirer.prompt({
@@ -32,19 +33,6 @@ async function askTypeOfCommit() {
   return answer.commit_type;
 }
 
-async function askTicketNumber() {
-  const answer = await inquirer.prompt({
-    name: 'ticket_number',
-    type: 'input',
-    message: 'What is the ticket number?',
-    default() {
-      return 'Ticket';
-    }
-  });
-
-  return answer.ticket_number;
-}
-
 async function askCommitMessage() {
   const answer = await inquirer.prompt({
     name: 'commit_message',
@@ -59,9 +47,7 @@ async function askCommitMessage() {
 }
 
 const commit_type = await askTypeOfCommit();
-const ticket_number = await askTicketNumber();
 const commit_message = await askCommitMessage();
 
-console.log(
-  'Ticket #' + ticket_number + ': ' + commit_type + ': ' + commit_message
-);
+shell.exec('git add .');
+shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
