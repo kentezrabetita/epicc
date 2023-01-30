@@ -1,5 +1,5 @@
 {
-  "name": "cm-cli",
+  "name": "epic-cc",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -11,11 +11,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kent Ezra Betita",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.2.0",
     "commander": "^10.0.0",
+    "figlet": "^1.5.2",
     "gradient-string": "^2.0.2",
     "inquirer": "^9.1.4",
     "ora": "^6.1.2",
