@@ -4,6 +4,7 @@ A CLI that shows a list of helpful conventional commits.
 
 #### roadmap
 
-- [ ] add colors
-- [ ] emojis
+- [x] add colors
+- [x] emojis
 - [x] loading spinner
+- [ ] table of conventional commits
