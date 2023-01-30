@@ -6,4 +6,4 @@ A CLI that shows a list of helpful conventional commits.
 
 - [ ] add colors
 - [ ] emojis
-- [ ] loading spinner
+- [x] loading spinner
