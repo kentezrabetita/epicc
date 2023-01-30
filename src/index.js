@@ -108,7 +108,7 @@ program
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
     const spinner = ora(
-      `${chalk.bgRed.bold('pushing changes to repository...')}`
+      `${chalk.bgRed.bold('pushing changes to repository...\n')}`
     ).start();
     await pushToGit(branch_name);
     spinner.succeed(
