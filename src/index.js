@@ -25,10 +25,7 @@ async function askTypeOfCommit() {
       'security',
       'style',
       'test'
-    ],
-    defualt() {
-      return 'Commit';
-    }
+    ]
   });
 
   return answer.commit_type;
@@ -38,10 +35,7 @@ async function askCommitMessage() {
   const answer = await inquirer.prompt({
     name: 'commit_message',
     type: 'input',
-    message: 'Enter commit message: ',
-    default() {
-      return 'Message';
-    }
+    message: 'Enter commit message: '
   });
 
   return answer.commit_message;
