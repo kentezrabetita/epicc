@@ -65,4 +65,13 @@ program
     shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
   });
 
+program
+  .command('p')
+  .description('push changes to repository')
+  .argument('<string>', 'branch name')
+  .action(async (branch_name) => {
+    await shell.exec(`git push origin ${branch_name}`);
+    await console.log(`changes pushed to repository ${branch_name} 🚀`);
+  });
+
 program.parse();
