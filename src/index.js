@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
 import shell from 'shelljs';
+import ora from 'ora';
 import { Command } from 'commander';
 
 async function askTypeOfCommit() {
@@ -64,8 +65,9 @@ program
   .description('push changes to repository')
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
+    const spinner = ora('Pushing changes to repository...').start();
     await shell.exec(`git push origin ${branch_name}`);
-    await console.log(`changes pushed to repository ${branch_name} 🚀`);
+    spinner.succeed(`changes pushed to repository ${branch_name} 🚀`);
   });
 
 program.parse();
