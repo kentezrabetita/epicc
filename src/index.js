@@ -44,7 +44,15 @@ async function askCommitMessage() {
 }
 
 async function pushToGit(branch_name) {
-  await shell.exec(`git push origin ${branch_name}`);
+  return new Promise((resolve, reject) => {
+    shell.exec(`git push origin ${branch_name}`, (code, stdout, stderr) => {
+      if (code === 0) {
+        resolve({ stdout, stderr });
+      } else {
+        reject(stderr);
+      }
+    });
+  });
 }
 
 const program = new Command();
