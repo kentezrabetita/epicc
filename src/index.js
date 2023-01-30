@@ -2,6 +2,7 @@
 import inquirer from 'inquirer';
 import shell from 'shelljs';
 import ora from 'ora';
+import chalk from 'chalk';
 import { Command } from 'commander';
 
 async function askTypeOfCommit() {
@@ -42,6 +43,10 @@ async function askCommitMessage() {
   return answer.commit_message;
 }
 
+async function pushToGit(branch_name) {
+  await shell.exec(`git push origin ${branch_name}`);
+}
+
 const program = new Command();
 
 program
@@ -65,8 +70,10 @@ program
   .description('push changes to repository')
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
-    const spinner = ora('Pushing changes to repository...').start();
-    await shell.exec(`git push origin ${branch_name}`);
+    const spinner = ora(
+      `Loading ${chalk.red('pushing changes to repository...')}`
+    ).start();
+    await pushToGit(branch_name);
     spinner.succeed(`changes pushed to repository ${branch_name} 🚀`);
   });
 
