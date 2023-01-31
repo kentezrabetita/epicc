@@ -60,9 +60,9 @@ async function pushToGit(branch_name) {
 const program = new Command();
 
 program
-  .name('epic-cc')
+  .name('epicc')
   .description('conventional commit cli helper')
-  .version('1.0.0')
+  .version('1.0.2')
   .action(() => {
     const title = `epic-cc`;
     const subtitle = `your conventional commit cli helper!`;
