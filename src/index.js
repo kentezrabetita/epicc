@@ -83,9 +83,7 @@ program
     shell.exec('git add .');
     shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
 
-    console.log(
-      `${chalk.bgBlue.bold('conventional commit created succesfully')}`
-    );
+    console.log(`${chalk.bgBlue.bold('yey! commit created succesfully')}`);
   });
 
 program
@@ -97,9 +95,7 @@ program
 
     shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
 
-    console.log(
-      `${chalk.bgBlue.bold('conventional commit created succesfully')}`
-    );
+    console.log(`${chalk.bgBlue.bold('yey! commit created succesfully')}`);
   });
 
 program
@@ -108,11 +104,13 @@ program
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
     const spinner = ora(
-      `${chalk.bgRed.bold('pushing changes to repository...\n')}`
+      `${chalk.blue.bold('⏳ pushing changes to repository...\n')}`
     ).start();
     await pushToGit(branch_name);
     spinner.succeed(
-      `${chalk.bgGreen.bold(`changes pushed to repository ${branch_name} 🚀`)}`
+      `${chalk.green.bold(
+        `🚀 hooray! changes were pushed to ${branch_name} branch.`
+      )}`
     );
   });
 
