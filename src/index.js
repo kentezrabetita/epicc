@@ -25,8 +25,8 @@ const commits = [
 ];
 
 const gitmojis = [
-  { name: '🎉 Feature', value: 'feat' },
-  { name: '🐛 Bug Fix', value: 'fix' },
+  { name: '✨ Feature', value: 'feat' },
+  { name: '🐞 Bug Fix', value: 'fix' },
   { name: '📚 Documentation', value: 'docs' },
   { name: '🎨 Style', value: 'style' },
   { name: '⚡️ Performance', value: 'perf' },
