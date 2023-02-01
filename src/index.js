@@ -57,6 +57,21 @@ async function pushToGit(branch_name) {
   });
 }
 
+async function generateCommit(commit_type, commit_message) {
+  return new Promise((resolve, reject) => {
+    shell.exec(
+      `git commit -m "${commit_type}: ${commit_message}"`,
+      (code, stdout, stderr) => {
+        if (code === 0) {
+          resolve({ stdout, stderr });
+        } else {
+          reject(stderr);
+        }
+      }
+    );
+  });
+}
+
 const program = new Command();
 
 program
@@ -81,9 +96,18 @@ program
     const commit_message = await askCommitMessage();
 
     shell.exec('git add .');
-    shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
 
-    console.log(`${chalk.bgBlue.bold('yey! commit created succesfully')}`);
+    const spinner = ora(
+      `${chalk.blue.bold('⏳ Generating commit. Please standby. Over.\n')}`
+    ).start();
+
+    await generateCommit(commit_type, commit_message);
+
+    spinner.succeed(
+      `${chalk.green.bold(
+        `🚀 Conventional commit successful. Standing by for new orders. Over.`
+      )}`
+    );
   });
 
 program
@@ -95,7 +119,11 @@ program
 
     shell.exec(`git commit -m "${commit_type}: ${commit_message}"`);
 
-    console.log(`${chalk.bgBlue.bold('yey! commit created succesfully')}`);
+    console.log(
+      `${chalk.green.bold(
+        '✅ Commit successful. Standing by for new orders. Over.'
+      )}`
+    );
   });
 
 program
@@ -104,12 +132,14 @@ program
   .argument('<string>', 'branch name')
   .action(async (branch_name) => {
     const spinner = ora(
-      `${chalk.blue.bold('⏳ pushing changes to repository...\n')}`
+      `${chalk.blue.bold(
+        '⏳ Copy that command control, pushing updates to the repository. Over.\n'
+      )}`
     ).start();
     await pushToGit(branch_name);
     spinner.succeed(
       `${chalk.green.bold(
-        `🚀 hooray! changes were pushed to ${branch_name} branch.`
+        `🚀 Command control, updates have been successfully pushed to the repository. Awaiting further orders. Over.`
       )}`
     );
   });
