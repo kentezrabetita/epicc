@@ -140,7 +140,7 @@ const program = new Command();
 program
   .name('epicc')
   .description('conventional commit cli helper')
-  .version('1.0.3')
+  .version('1.0.4')
   .action(() => {
     const title = `epic-cc`;
     const subtitle = `your conventional commit cli helper!`;
