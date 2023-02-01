@@ -5,7 +5,37 @@ import ora from 'ora';
 import chalk from 'chalk';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
+import Table from 'cli-table3';
 import { Command } from 'commander';
+
+const commits = [
+  { type: 'feat', message: 'Add new feature' },
+  { type: 'fix', message: 'Fix bug in feature' },
+  { type: 'docs', message: 'Update documentation' },
+  { type: 'style', message: 'Improve code style' },
+  { type: 'perf', message: 'Improve algorithm performance' },
+  { type: 'refactor', message: 'Refactor existing code' },
+  { type: 'remove', message: 'Remove feature' },
+  { type: 'security', message: 'Improve/Resolve security' },
+  { type: 'test', message: 'Add/Improve tests' },
+  { type: 'deprecate', message: 'Deprecate existing functionality' },
+  { type: 'ci', message: 'Changes to CI/CD' },
+  { type: 'change', message: 'Changes implementation of feature' },
+  { type: 'build', message: 'Changes in the build system' }
+];
+
+const table = new Table({
+  head: ['Type', 'Message'],
+  colWidths: [15, 40]
+});
+
+commits.forEach((commit) => {
+  table.push([commit.type, commit.message]);
+});
+
+async function showCommitsTable() {
+  await console.log(table.toString());
+}
 
 async function askTypeOfCommit() {
   const answer = await inquirer.prompt({
@@ -141,5 +171,9 @@ program
       )}`
     );
   });
+
+program.option('--show').action(async () => {
+  await showCommitsTable();
+});
 
 program.parse();
