@@ -60,7 +60,7 @@ async function pushToGit(branch_name) {
 async function generateCommit(commit_type, commit_message) {
   return new Promise((resolve, reject) => {
     shell.exec(
-      `git commit -m "${commit_type}: ${commit_message}"`,
+      `git add . && git commit -m "${commit_type}: ${commit_message}"`,
       (code, stdout, stderr) => {
         if (code === 0) {
           resolve({ stdout, stderr });
@@ -95,8 +95,6 @@ program
     const commit_type = await askTypeOfCommit();
     const commit_message = await askCommitMessage();
 
-    shell.exec('git add .');
-
     const spinner = ora(
       `${chalk.blue.bold('⏳ Generating commit. Please standby. Over.\n')}`
     ).start();
@@ -105,7 +103,7 @@ program
 
     spinner.succeed(
       `${chalk.green.bold(
-        `🚀 Conventional commit successful. Standing by for new orders. Over.`
+        `✅ Conventional commit successful. Standing by for new orders. Over.`
       )}`
     );
   });
