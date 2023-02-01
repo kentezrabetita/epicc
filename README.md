@@ -7,4 +7,6 @@ A CLI that shows a list of helpful conventional commits.
 - [x] add colors
 - [x] emojis
 - [x] loading spinner
-- [ ] table of conventional commits
+- [x] table of conventional commits
+- [ ] refactor whole code
+- [ ] change file structure for better management
