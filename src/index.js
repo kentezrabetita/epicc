@@ -24,6 +24,22 @@ const commits = [
   { type: 'build', message: 'Changes in the build system' }
 ];
 
+const gitmojis = [
+  { name: '🎉 Feature', value: 'feat' },
+  { name: '🐛 Bug Fix', value: 'fix' },
+  { name: '📚 Documentation', value: 'docs' },
+  { name: '🎨 Style', value: 'style' },
+  { name: '⚡️ Performance', value: 'perf' },
+  { name: '🔨 Refactor', value: 'refactor' },
+  { name: '🗑️ Removal', value: 'remove' },
+  { name: '🔒 Security', value: 'security' },
+  { name: '🚨 Tests', value: 'test' },
+  { name: '💩 Deprecation', value: 'deprecate' },
+  { name: '💚 Continuous Integration', value: 'ci' },
+  { name: '💡 Change', value: 'change' },
+  { name: '🔧 Build', value: 'build' }
+];
+
 const table = new Table({
   head: ['Type', 'Message'],
   colWidths: [15, 40]
@@ -37,32 +53,49 @@ async function showCommitsTable() {
   await console.log(table.toString());
 }
 
+async function addGitmoji(commit_type) {
+  switch (commit_type) {
+    case 'feat':
+      return '✨';
+    case 'fix':
+      return '🐞';
+    case 'docs':
+      return '📚';
+    case 'style':
+      return '🎨';
+    case 'perf':
+      return '⚡️';
+    case 'refactor':
+      return '🔨';
+    case 'remove':
+      return '🗑️';
+    case 'security':
+      return '🔒';
+    case 'test':
+      return '🚨';
+    case 'deprecate':
+      return '💩';
+    case 'ci':
+      return '💚';
+    case 'change':
+      return '💡';
+    case 'build':
+      return '🔧';
+  }
+}
+
 async function askTypeOfCommit() {
   const answer = await inquirer.prompt({
     name: 'commit_type',
     type: 'list',
     message: 'What is your commit type?',
-    choices: [
-      'feat',
-      'refactor',
-      'fix',
-      'bug',
-      'docs',
-      'build',
-      'change',
-      'chore',
-      'ci',
-      'deprecate',
-      'perf',
-      'remove',
-      'revert',
-      'security',
-      'style',
-      'test'
-    ]
+    choices: gitmojis
   });
 
-  return answer.commit_type;
+  const emoji = await addGitmoji(answer.commit_type);
+  const commit = emoji.concat(' ', answer.commit_type);
+
+  return commit;
 }
 
 async function askCommitMessage() {
