@@ -49,11 +49,11 @@ commits.forEach((commit) => {
   table.push([commit.type, commit.message]);
 });
 
-async function showCommitsTable() {
-  await console.log(table.toString());
+function showCommitsTable() {
+  console.log(table.toString());
 }
 
-async function addGitmoji(commit_type) {
+function addGitmoji(commit_type) {
   switch (commit_type) {
     case 'feat':
       return '✨';
@@ -137,18 +137,32 @@ async function generateCommit(commit_type, commit_message) {
 
 const program = new Command();
 
+async function showGreetings() {
+  const title = `epicc`;
+
+  await figlet(title, (err, data) => {
+    console.log(gradient.pastel.multiline(data));
+    console.log();
+    console.log(
+      gradient.pastel.multiline(
+        'An opinionated interactive CLI that helps you automate generate conventional commits with emojis'
+      )
+    );
+  });
+}
+
 program
   .name('epicc')
-  .description('conventional commit cli helper')
-  .version('1.0.4')
+  .description(
+    'An opinionated interactive CLI that helps you automate generate conventional commits with emojis'
+  )
+  .version('1.0.5')
+  .option(
+    '-st, --show-table',
+    'show list of conventional commits in table format'
+  )
   .action(() => {
-    const title = `epic-cc`;
-    const subtitle = `your conventional commit cli helper!`;
-
-    figlet(title, (err, data) => {
-      console.log(gradient.pastel.multiline(data));
-      console.log(gradient.pastel(`${subtitle}`));
-    });
+    showGreetings();
   });
 
 program
@@ -205,8 +219,8 @@ program
     );
   });
 
-program.option('--show').action(async () => {
-  await showCommitsTable();
-});
+program.parse(process.argv);
 
-program.parse();
+const options = program.opts();
+
+if (options.showTable) showCommitsTable();
