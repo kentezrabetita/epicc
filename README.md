@@ -1,12 +1,92 @@
-# epic-cc
+# Epicc
 
-A CLI that shows a list of helpful conventional commits.
+An opinionated interactive CLI that helps you automate generate conventional commits with emojis.
 
-#### roadmap
+## Installation
+Using npm :
+```sh
+$ npm install -g epicc
+```
+Using yarn :
+```sh
+$ yarn add global epicc
+```
 
-- [x] add colors
-- [x] emojis
-- [x] loading spinner
-- [x] table of conventional commits
+## Usage
+
+### Flow
+
+First, you will be ask what type of commit do you want to make.
+
+```
+? What is your commit type? (Use arrow keys)
+❯ ✨ Feature 
+  🐞 Bug Fix 
+  📚 Documentation 
+  🎨 Style 
+  ⚡️ Performance 
+  🔨 Refactor 
+  🗑️ Removal 
+  🔒 Security 
+  🚨 Tests 
+  💩 Deprecation 
+  💚 Continuous Integration 
+  💡 Change 
+  🔧 Build 
+```
+
+Second, you will input the commit message.
+
+```
+? What is your commit type? ✨ Feature
+? Enter commit message:  add awesome commit message
+⠋ ⏳ Generating commit. Please standby. Over.
+[main fef19ef] ✨ feat: add awesome commit message
+ 3 files changed, 14 insertions(+), 10 deletions(-)
+✔ ✅ Conventional commit successful. Standing by for new orders. Over.
+```
+
+Lastly, by using the `epicc p [branch-name]`, it will then push your commits to the respectine repository.
+
+```sh
+epicc p main
+```
+
+```
+⠙ ⏳ Copy that command control, pushing updates to the repository. Over.
+To https://github.com/kentezrabetita/dict-examination.git
+✔ 🚀 Command control, updates have been successfully pushed to the repository. Awaiting further orders. Over.
+```
+
+### Commands
+
+ - `epicc` command will show you a list of conventional commits in a table format.
+ 
+```bash
+epicc
+```
+
+ - `epicc ac` will add all your changes and generate a conventional commit depending on your selection.
+ 
+```bash
+epicc ac
+```
+
+ - `epicc c` will generate a conventional commit but with only the specific changes you stage.
+ 
+```bash
+epicc c
+```
+
+ - `epicc p [branch]` will push the changes to the repository
+ 
+```bash
+epicc p main
+```
+```bash
+epicc p master
+```
+
+## Roadmap
 - [ ] refactor whole code
 - [ ] change file structure for better management
