@@ -1,15 +1,5 @@
 # Epicc
 
-```
-             _
-   ___ _ __ (_) ___ ___
-  / _ \ '_ \| |/ __/ __|
- |  __/ |_) | | (_| (__
-  \___| .__/|_|\___\___|
-      |_|
-
-```
-
 An opinionated interactive CLI that helps you automate generate conventional commits with emojis.
 
 ## Installation
