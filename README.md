@@ -2,6 +2,8 @@
 
 An opinionated interactive CLI that helps you automate generate conventional commits with emojis.
 
+![Alt Text](https://github.com/kentezrabetita/personal-portfolio/blob/main/public/assets/thumbnails/epicc.gif)
+
 ## Installation
 
 Using npm :
