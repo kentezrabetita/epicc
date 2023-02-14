@@ -26,7 +26,7 @@ program
   .description(
     'An opinionated interactive CLI that helps you automate and generate conventional commits with emojis'
   )
-  .version('1.0.6')
+  .version('1.0.7')
   .option(
     '-st, --show-table',
     'show list of conventional commits in table format'
