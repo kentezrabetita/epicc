@@ -8,22 +8,26 @@ export const addGitmoji = (commit_type) => {
       return '📚';
     case 'style':
       return '🎨';
-    case 'perf':
-      return '⚡️';
     case 'refactor':
       return '🔨';
+    case 'change':
+      return '💡';
     case 'remove':
-      return '🗑️';
-    case 'security':
-      return '🔒';
+      return '🚧';
     case 'test':
       return '🚨';
+    case 'chore':
+      return '🧹';
+    case 'revert':
+      return '⏪';
+    case 'security':
+      return '🔒';
     case 'deprecate':
       return '💩';
     case 'ci':
       return '💚';
-    case 'change':
-      return '💡';
+    case 'perf':
+      return '⚡️';
     case 'build':
       return '🔧';
   }
