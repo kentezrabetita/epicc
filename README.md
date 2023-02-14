@@ -75,8 +75,3 @@ To https://github.com/kentezrabetita/dict-examination.git
 - `epicc ac` will add all your changes and generate a conventional commit depending on your selection.
 - `epicc c` will generate a conventional commit but with only the specific changes you stage.
 - `epicc p [branch]` will push the changes to the repository
-
-## Roadmap
-
-- [ ] refactor whole code
-- [ ] change file structure for better management
